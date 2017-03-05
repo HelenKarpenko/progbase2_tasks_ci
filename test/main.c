@@ -2,7 +2,8 @@
 #include <stdlib.h>
 
 #include <check.h>
-#include "../include/university.h"
+#include <university.h>
+#include <list.h>
 
 
 START_TEST(university_getListOfStudentsFromCSVStr_LenOfStr_0){

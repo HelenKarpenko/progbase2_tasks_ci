@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
-#include "../include/student.h"
+#include <university.h>
+#include <student.h>
+#include <list.h>
 #define throw(MSG) assert(0 && MSG)
 #define STUDENT_NAME "UNKNOWN"
 struct Student {

@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
-#include "../include/university.h"
-#include "../include/list.h"
-#include "../include/teacher.h"
+#include <university.h>
+#include <list.h>
+#include <teacher.h>
 #define throw(MSG) assert(0 && MSG)
 
 struct Teacher {

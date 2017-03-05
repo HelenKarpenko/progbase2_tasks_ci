@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <assert.h>
-#include "../../include/listNode.h"
+#include <listNode.h>
 #define throw(MSG) assert(0 && MSG)
 
 struct ListNode {

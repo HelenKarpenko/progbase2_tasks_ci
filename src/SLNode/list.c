@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <assert.h>
 #define throw(MSG) assert(0 && MSG)
-#include "../../include/listNode.h"
-#include "../../include/list.h"
+#include <listNode.h>
+#include <list.h>
 struct List {
         ListNode *head;
 };

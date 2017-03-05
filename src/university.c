@@ -3,10 +3,10 @@
 #include <string.h>
 #include <assert.h>
 #include <ctype.h>
-#include "../include/university.h"
-#include "../include/student.h"
-#include "../include/list.h"
-#include "../include/teacher.h"
+#include <university.h>
+#include <student.h>
+#include <list.h>
+#include <teacher.h>
 #define throw(MSG) assert(0 && MSG)
 enum Fields {
         nameField = 0,
@@ -69,9 +69,7 @@ List *University_listFromIntersectionOfTeacher(Teacher *teacher1, Teacher *teach
         if(teacher1 == NULL || teacher2 == NULL) throw("University_listFromIntersectionOfTeacher: teacher = null\n");
         List *listResult = List_new();
         List *list1 = Teacher_getListOfStudents(teacher1);
-        List *list2 = Teacher_getListOfStudents(teacher2);
         int len1 = List_getLength(list1);
-        int len2 = List_getLength(list2);
         for(int i = 0; i < len1; i++) {
                 Student * s  =(Student *)List_getDataAt(Teacher_getListOfStudents(teacher1),i);
                 if(Teacher_containsStudent(teacher2, s)) {
