@@ -14,7 +14,7 @@ file(GLOB LIB_SOURCES_LIST "src/SLNode/*.c")
 #
 project (university)
 # to build static library target with name libmtmodule.a
-add_library(${PROJECT_NAME} STATIC ${LIB_SOURCES} ${LIB_SOURCES_LIST})
+add_library(${CMAKE_PROJECT_NAME} STATIC ${LIB_SOURCES} ${LIB_SOURCES_LIST})
 # to install library headers
 install(
     DIRECTORY include/ DESTINATION /usr/local/include
@@ -22,19 +22,20 @@ install(
 )
 # Set the location for library installation
 # Use "sudo make install" in build directory to apply
-install(TARGETS ${PROJECT_NAME} DESTINATION /usr/local/lib)
+install(TARGETS ${CMAKE_PROJECT_NAME} DESTINATION /usr/local/lib)
 
 #
 # Test project
 #
 project(a.out)
-add_executable(${CMAKE_PROJECT_NAME} "tests/main.c" ${LIB_SOURCES} ${LIB_SOURCES_LIST})
+add_executable(${CMAKE_PROJECT_NAME} "tests/main.c" ${LIB_SOURCES})
+set_property(TARGET ${CMAKE_PROJECT_NAME} PROPERTY C_STANDARD 99)
 target_link_libraries(${CMAKE_PROJECT_NAME} libcheck.so)
 
 #
 # Create make test
 
-	enable_testing()
+enable_testing()
 add_test(unit-tests ${CMAKE_PROJECT_NAME})
 
 # Coverage
@@ -44,13 +45,5 @@ setup_target_for_coverage(${CMAKE_PROJECT_NAME}_coverage ${CMAKE_PROJECT_NAME} c
 SET(CMAKE_CXX_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
 SET(CMAKE_C_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
 
-include(CTest)
-if(UNIX)
-  SET(CMAKE_CXX_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
-SET(CMAKE_C_FLAGS "-std=c99 -g -O0 -fprofile-arcs -ftest-coverage")
-endif()
 
-add_test(NAME test
-        WORKING_DIRECTORY ${my_outputdirectory}
-        COMMAND test_exe)
 # gnome-terminal --tab -e "/bin/bash -c 'valgrind --leak-check=yes ./a.out; exec /bin/bash -i'"
